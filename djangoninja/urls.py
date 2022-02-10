@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ninja import NinjaAPI # 닌자 api 객체를 임포트한다
+from ninja import NinjaAPI  # 닌자 api 객체를 임포트한다
 
-api = NinjaAPI() # 닌자 api 객체를 바로 인스턴트화 한다
+api = NinjaAPI()  # 닌자 api 객체를 바로 인스턴트화 한다
 
 
-@api.get("/add") # 함수를 데코레이터로 감싸 url을 넘겨준다(플라스크와 비슷)
+@api.get("/add")  # 함수를 데코레이터로 감싸 url을 넘겨준다(플라스크와 비슷)
 def add(request, a: int, b: int):
     return {"result": a + b}
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
