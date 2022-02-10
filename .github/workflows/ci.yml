@@ -25,9 +25,9 @@ jobs:
       # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
       - name: Start Mysql
         run: |
-        sudo systemctl start mysql
-        mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
-        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          sudo systemctl start mysql
+          mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 
 
       - name: Setup python environment
@@ -38,13 +38,13 @@ jobs:
 
       - name: Install Poetry
         run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-        echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: |
-        ${HOME}/.poetry/bin/poetry install
+          ${HOME}/.poetry/bin/poetry install
 
       - name: Test python project
         run: |
-        poetry run python manage.py test
+          poetry run python manage.py test
