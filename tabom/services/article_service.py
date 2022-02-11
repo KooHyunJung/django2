@@ -17,3 +17,7 @@ def get_article_list(user_id: int, offset: int, limit: int) -> QuerySet[Article]
             offset : offset + limit
         ]
     )
+
+
+def delete_an_article(article_id: int) -> None:
+    Article.objects.filter(id=article_id).delete()
