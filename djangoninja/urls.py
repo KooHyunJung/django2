@@ -27,6 +27,6 @@ api.add_router("/articles/", article_router)
 
 
 urlpatterns = [
-path("admin/", admin.site.urls),
-path("api/v1/", api.urls),
+    path("admin/", admin.site.urls),
+    path("api/v1/", api.urls),
 ]

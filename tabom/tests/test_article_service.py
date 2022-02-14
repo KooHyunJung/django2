@@ -3,9 +3,10 @@ from django.test import TestCase
 from tabom.models import Like, User
 from tabom.models.article import Article
 from tabom.services.article_service import (
+    create_an_article,
     delete_an_article,
     get_an_article,
-    get_article_list, create_an_article,
+    get_article_list,
 )
 from tabom.services.like_service import do_like
 

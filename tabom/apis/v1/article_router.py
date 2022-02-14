@@ -4,8 +4,8 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 from ninja import Router
 
-from tabom.apis.v1.schemas.article_response import ArticleResponse
 from tabom.apis.v1.schemas.article_create_request import ArticleCreateRequest
+from tabom.apis.v1.schemas.article_response import ArticleResponse
 from tabom.models import Article
 from tabom.services.article_service import (
     create_an_article,
@@ -14,7 +14,7 @@ from tabom.services.article_service import (
     get_article_list,
 )
 
-router = Router()
+router = Router(tags=["articles"])
 
 
 @router.post("/", response={201: ArticleResponse})
