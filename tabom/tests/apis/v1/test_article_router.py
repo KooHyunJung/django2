@@ -62,3 +62,15 @@ class TestArticleRouter(TestCase):
 
         self.assertEqual(204, response.status_code)
         self.assertFalse(Article.objects.filter(id=article.id).exists())
+
+
+    def test_get_article_404(self) -> None:
+        # Given
+        invalid_article_id = 9988
+
+        # When
+        response = self.client.get(f"/api/v1/articles/{invalid_article_id}", {"user_id": 0})
+
+        # Then
+        self.assertEqual(404, response.status_code)
+        self.assertEqual(f"Article #{invalid_article_id} Not Found", response.json()["detail"])

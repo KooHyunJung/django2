@@ -1,5 +1,7 @@
-from tabom.models import Article, User, Like
 from django.db.models import F
+
+from tabom.models import Article, Like, User
+
 
 def do_like(user_id: int, article_id: int) -> Like:
     User.objects.filter(id=user_id).get()
