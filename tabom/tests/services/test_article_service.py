@@ -42,22 +42,22 @@ class TestArticleService(TestCase):
 
     def test_get_article_list_should_prefetch_like(self) -> None:
         # Given
-        user = User.objects.create(name="test_user")
-        articles = [Article.objects.create(title=f"{i}") for i in range(1, 21)]
-        do_like(user.id, articles[-1].id)
+        user = User.objects.create(name="user1")
+        article1 = Article.objects.create(title="artice1")
+        do_like(user.id, article1.id)
+        article2 = Article.objects.create(title="article2")
 
         # When
-        with self.assertNumQueries(3):
-            result_articles = get_article_list(user.id, 0, 10)
-            result_counts = [a.like_set.count() for a in result_articles]
+        with self.assertNumQueries(2):
+            articles = get_article_list(user.id, 0, 10)
+            counts = [a.like_count for a in articles]
 
             # Then
-            self.assertEqual(len(result_articles), 10)
-            self.assertEqual(1, result_counts[0])
-            self.assertEqual(
-                [a.id for a in reversed(articles[10:21])],
-                [a.id for a in result_articles],
-            )
+            self.assertEqual(0, counts[0])
+            self.assertEqual(article2.id, articles[0].id)
+
+            self.assertEqual(1, counts[1])
+            self.assertEqual(article1.id, articles[1].id)
 
     def test_get_article_list_should_contain_my_likes_when_like_exists(self) -> None:
         # Given
