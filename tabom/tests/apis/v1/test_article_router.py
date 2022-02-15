@@ -63,7 +63,6 @@ class TestArticleRouter(TestCase):
         self.assertEqual(204, response.status_code)
         self.assertFalse(Article.objects.filter(id=article.id).exists())
 
-
     def test_get_article_404(self) -> None:
         # Given
         invalid_article_id = 9988

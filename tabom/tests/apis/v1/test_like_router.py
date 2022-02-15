@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from tabom.models import Like, User, Article
+from tabom.models import Article, Like, User
 from tabom.services.article_service import create_an_article
 from tabom.services.like_service import do_like
 
